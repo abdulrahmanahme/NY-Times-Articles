@@ -1,7 +1,11 @@
 import 'package:artical/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'core/services/services.dart';
+
 void main() {
+  ServicesLocator().init();
+
   runApp(const MyApp());
 }
 

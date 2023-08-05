@@ -28,10 +28,15 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(
-          Icons.arrow_back,
-          size: 30,
-          color: Colors.white,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            size: 30,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: const TextWidget(
           name: 'NY Times Most Popular',
@@ -59,12 +64,14 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
               fontWeight: FontWeight.normal,
             ),
             Padding(
-              padding:const EdgeInsets.only(left: 8, right: 8),
+              padding: const EdgeInsets.only(left: 8, right: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextWidget(
-                    name: widget.byline,
+                  Expanded(
+                    child: TextWidget(
+                      name: widget.byline,
+                    ),
                   ),
                   TextWidget(
                     name: widget.date,
@@ -76,7 +83,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
               image: widget.image,
             ),
             TextWidget(
-              name: widget.source,
+              name: "source: ${widget.source}",
             ),
             TextWidget(
               padding: 5.0,

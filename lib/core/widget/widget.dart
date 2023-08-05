@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 class ImageWidget extends StatelessWidget {
   const ImageWidget({
     super.key,
     this.image,
   });
-  final String ?image;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +17,10 @@ class ImageWidget extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 260,
-        decoration:  BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+        decoration: BoxDecoration(
+          borderRadius:const BorderRadius.all(Radius.circular(20)),
           image: DecorationImage(
-            image: NetworkImage(
-                image!),
+            image: NetworkImage(image!),
             fit: BoxFit.cover,
           ),
         ),
@@ -50,6 +50,7 @@ class TextWidget extends StatelessWidget {
       padding: EdgeInsets.all(padding!),
       child: Text(
         name!,
+        maxLines: 2,
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: fontWeight,
@@ -78,13 +79,11 @@ class IconWidget extends StatelessWidget {
 
 class ArticleWidget extends StatelessWidget {
   const ArticleWidget(
-      {super.key, this.title, this.byline, this.date ,this.image});
+      {super.key, this.title, this.byline, this.date, this.image});
   final String? title;
   final String? byline;
   final String? date;
   final String? image;
-
-// final List<Media>? media;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -94,38 +93,45 @@ class ArticleWidget extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.all(10),
-                child:
-                 CircleAvatar(
+                child: CircleAvatar(
                   radius: 35,
                   backgroundImage: NetworkImage(image!),
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextWidget(
-                    name: title,
-                    // fontSize: 15,
-                    fontSize: 5,
-                    fontWeight: FontWeight.w500,
-                  ),
-                 const SizedBox(
-                    height: 5,
-                  ),
-                  TextWidget(
-                    name: byline,
-                    // fontSize: 15,
-                    fontSize: 5,
-                    color: Colors.grey,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      title!,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    Text(
+                      byline!,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.grey.shade500,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              const Spacer(),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: IconWidget(
                   icon: Icons.arrow_forward_ios,
-                  size: 30,
+                  size: 35,
                   color: Colors.grey.shade500,
                 ),
               ),
